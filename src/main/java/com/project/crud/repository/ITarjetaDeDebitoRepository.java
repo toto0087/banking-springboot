@@ -1,4 +1,7 @@
 package com.project.crud.repository;
 
-public interface ITarjetaDeDebitoRepository {
+import com.project.crud.model.TarjetaDeDebito;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ITarjetaDeDebitoRepository extends JpaRepository<TarjetaDeDebito, Long> {
 }

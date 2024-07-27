@@ -22,4 +22,6 @@ public class TarjetaDeDebito {
     private String fechaDeVencimiento;
     @Column
     private String codigoDeSeguridad;
+    @OneToOne
+    private CajaDeAhorro cajaDeAhorro;
 }
