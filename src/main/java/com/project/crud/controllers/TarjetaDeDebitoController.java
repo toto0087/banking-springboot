@@ -4,7 +4,9 @@ import com.project.crud.model.TarjetaDeDebito;
 import com.project.crud.services.TarjetaDeDebitoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -19,17 +21,17 @@ public class TarjetaDeDebitoController {
         return tarjetaDeDebitoService.getAllTarjetasDeDebito();
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     public TarjetaDeDebito getTarjetaDeDebitoById(Long id) {
         return tarjetaDeDebitoService.getTarjetaDeDebitoById(id);
     }
 
-    @GetMapping
+    @PostMapping
     public TarjetaDeDebito saveTarjetaDeDebito(TarjetaDeDebito tarjetaDeDebito) {
         return tarjetaDeDebitoService.saveTarjetaDeDebito(tarjetaDeDebito);
     }
 
-    @GetMapping
+    @DeleteMapping
     public void deleteTarjetaDeDebito(Long id) {
         tarjetaDeDebitoService.deleteTarjetaDeDebito(id);
     }

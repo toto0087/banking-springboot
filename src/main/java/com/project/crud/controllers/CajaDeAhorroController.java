@@ -3,9 +3,7 @@ package com.project.crud.controllers;
 import com.project.crud.model.CajaDeAhorro;
 import com.project.crud.services.CajaDeAhorroService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,18 +19,18 @@ public class CajaDeAhorroController {
         return cajaDeAhorroService.getAllCajasDeAhorro();
     }
 
-    @GetMapping
-    public CajaDeAhorro getCajaDeAhorroById(Long id) {
+    @GetMapping("/{id}")
+    public CajaDeAhorro getCajaDeAhorroById(@PathVariable Long id) {
         return cajaDeAhorroService.getCajaDeAhorroById(id);
     }
 
-    @GetMapping
-    public CajaDeAhorro saveCajaDeAhorro(CajaDeAhorro cajaDeAhorro) {
+    @PostMapping
+    public CajaDeAhorro saveCajaDeAhorro(@RequestBody CajaDeAhorro cajaDeAhorro) {
         return cajaDeAhorroService.saveCajaDeAhorro(cajaDeAhorro);
     }
 
-    @GetMapping
-    public void deleteCajaDeAhorro(Long id) {
+    @DeleteMapping("/{id}")
+    public void deleteCajaDeAhorro(@PathVariable Long id) {
         cajaDeAhorroService.deleteCajaDeAhorro(id);
     }
 }
