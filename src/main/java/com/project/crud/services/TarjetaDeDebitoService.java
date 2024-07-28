@@ -1,5 +1,6 @@
 package com.project.crud.services;
 
+import com.project.crud.model.CajaDeAhorro;
 import com.project.crud.model.TarjetaDeDebito;
 import com.project.crud.repository.ITarjetaDeDebitoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,9 @@ public class TarjetaDeDebitoService {
 
     @Autowired
     private ITarjetaDeDebitoRepository tarjetaDeDebitoRepository;
+
+    @Autowired
+    private CajaDeAhorroService cajaDeAhorroService;
 
     public List<TarjetaDeDebito> getAllTarjetasDeDebito() {
         return tarjetaDeDebitoRepository.findAll();
@@ -27,5 +31,25 @@ public class TarjetaDeDebitoService {
 
     public void deleteTarjetaDeDebito(Long id) {
         tarjetaDeDebitoRepository.deleteById(id);
+    }
+
+
+    public void processPayment(Long id, Double monto) throws RuntimeException {
+        TarjetaDeDebito tarjetaDeDebito = tarjetaDeDebitoRepository.findById(id).orElse(null);
+
+        try {
+            if (tarjetaDeDebito == null) {
+                throw new RuntimeException("Tarjeta de débito no encontrada");
+            }
+
+            CajaDeAhorro cajaDeAhorro = tarjetaDeDebito.getCajaDeAhorro();
+            if (cajaDeAhorro == null) {
+                throw new RuntimeException("Caja de ahorro no asociada");
+            }
+
+            cajaDeAhorroService.restarSaldo(cajaDeAhorro.getId(), monto);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 }

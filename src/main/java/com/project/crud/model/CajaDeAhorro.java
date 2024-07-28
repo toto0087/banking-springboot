@@ -18,5 +18,5 @@ public class CajaDeAhorro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long numeroDeCuenta;
-    private Long saldo;
+    private Double saldo;
 }

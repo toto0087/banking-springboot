@@ -3,14 +3,12 @@ package com.project.crud.controllers;
 import com.project.crud.model.TarjetaDeDebito;
 import com.project.crud.services.TarjetaDeDebitoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Service
+@RestController
+@RequestMapping("/debito")
 public class TarjetaDeDebitoController {
 
     @Autowired
@@ -35,4 +33,10 @@ public class TarjetaDeDebitoController {
     public void deleteTarjetaDeDebito(Long id) {
         tarjetaDeDebitoService.deleteTarjetaDeDebito(id);
     }
+
+    @PostMapping("{id}/pagar")
+    public void pagar(@PathVariable Long id, @RequestParam Double monto) {
+        tarjetaDeDebitoService.processPayment(id, monto);
+    }
+
 }

@@ -33,4 +33,9 @@ public class CajaDeAhorroController {
     public void deleteCajaDeAhorro(@PathVariable Long id) {
         cajaDeAhorroService.deleteCajaDeAhorro(id);
     }
+
+    @PostMapping("/{id}/depositar/{numeroCuentaDestino}")
+    public void depositar(@PathVariable Long id, @PathVariable Long numeroCuentaDestino, @RequestParam Double monto) {
+        cajaDeAhorroService.depositar(id, numeroCuentaDestino, monto);
+    }
 }
