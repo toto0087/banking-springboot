@@ -66,7 +66,7 @@ public class CajaDeAhorroService {
             cajaDeAhorro.setSaldo(saldo - monto);
             cajaDeAhorroRepository.save(cajaDeAhorro);
 
-            CajaDeAhorro cajaDeAhorroDestino = cajaDeAhorroRepository.findByNumeroCuenta(numeroCuentaDestino);
+            CajaDeAhorro cajaDeAhorroDestino = cajaDeAhorroRepository.findByNumeroDeCuenta(numeroCuentaDestino);
             if (cajaDeAhorroDestino == null) {
                 throw new RuntimeException("Cuenta destino no encontrada");
             }

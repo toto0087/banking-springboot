@@ -3,6 +3,8 @@ package com.project.crud.controllers;
 import com.project.crud.model.TarjetaDeDebito;
 import com.project.crud.services.TarjetaDeDebitoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,28 +17,33 @@ public class TarjetaDeDebitoController {
     private TarjetaDeDebitoService tarjetaDeDebitoService;
 
     @GetMapping
-    public List<TarjetaDeDebito> getAllTarjetasDeDebito() {
-        return tarjetaDeDebitoService.getAllTarjetasDeDebito();
+    public ResponseEntity<List<TarjetaDeDebito>> getAllTarjetasDeDebito() {
+        List<TarjetaDeDebito> tarjetas = tarjetaDeDebitoService.getAllTarjetasDeDebito();
+        return ResponseEntity.ok(tarjetas);
     }
 
     @GetMapping("/{id}")
-    public TarjetaDeDebito getTarjetaDeDebitoById(Long id) {
-        return tarjetaDeDebitoService.getTarjetaDeDebitoById(id);
+    public ResponseEntity<TarjetaDeDebito> getTarjetaDeDebitoById(@PathVariable Long id) {
+        TarjetaDeDebito tarjeta = tarjetaDeDebitoService.getTarjetaDeDebitoById(id);
+        return ResponseEntity.of(java.util.Optional.ofNullable(tarjeta));
     }
 
     @PostMapping
-    public TarjetaDeDebito saveTarjetaDeDebito(TarjetaDeDebito tarjetaDeDebito) {
-        return tarjetaDeDebitoService.saveTarjetaDeDebito(tarjetaDeDebito);
+    public ResponseEntity<TarjetaDeDebito> saveTarjetaDeDebito(@RequestBody TarjetaDeDebito tarjetaDeDebito) {
+        TarjetaDeDebito savedTarjeta = tarjetaDeDebitoService.saveTarjetaDeDebito(tarjetaDeDebito);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedTarjeta);
     }
 
-    @DeleteMapping
-    public void deleteTarjetaDeDebito(Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTarjetaDeDebito(@PathVariable Long id) {
         tarjetaDeDebitoService.deleteTarjetaDeDebito(id);
+        return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("{id}/pagar")
-    public void pagar(@PathVariable Long id, @RequestParam Double monto) {
+    @PostMapping("/{id}/pagar")
+    public ResponseEntity<Void> pagar(@PathVariable Long id, @RequestParam Double monto) {
         tarjetaDeDebitoService.processPayment(id, monto);
+        return ResponseEntity.ok().build();
     }
 
 }

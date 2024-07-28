@@ -3,6 +3,8 @@ package com.project.crud.controllers;
 import com.project.crud.model.Cuenta;
 import com.project.crud.services.CuentaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,26 +14,30 @@ import java.util.List;
 public class CuentaController {
 
     @Autowired
-    CuentaService cuentaService;
+    private CuentaService cuentaService;
 
     @GetMapping
-    public List<Cuenta> getAllCuentas() {
-        return cuentaService.getAllCuentas();
+    public ResponseEntity<List<Cuenta>> getAllCuentas() {
+        List<Cuenta> cuentas = cuentaService.getAllCuentas();
+        return ResponseEntity.ok(cuentas);
     }
 
     @GetMapping("/{id}")
-    public Cuenta getCuentaById(Long id) {
-        return cuentaService.getCuentaById(id);
+    public ResponseEntity<Cuenta> getCuentaById(@PathVariable Long id) {
+        Cuenta cuenta = cuentaService.getCuentaById(id);
+        return ResponseEntity.of(java.util.Optional.ofNullable(cuenta));
     }
 
     @PostMapping
-    public Cuenta saveCuenta(Cuenta cuenta) {
-        return cuentaService.saveCuenta(cuenta);
+    public ResponseEntity<Cuenta> saveCuenta(@RequestBody Cuenta cuenta) {
+        Cuenta savedCuenta = cuentaService.saveCuenta(cuenta);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedCuenta);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCuenta(Long id) {
+    public ResponseEntity<Void> deleteCuenta(@PathVariable Long id) {
         cuentaService.deleteCuenta(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
