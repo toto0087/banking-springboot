@@ -1,7 +1,8 @@
 package com.project.crud.model.impl;
 
 import com.project.crud.domain.dto.ResponseDto;
-import com.project.crud.domain.dto.TarjetaDebitoListDto;
+import com.project.crud.domain.dto.TarjetaDeDebitoDto;
+import com.project.crud.domain.dto.dtoList.TarjetaDebitoListDto;
 import com.project.crud.model.service.ITarjetaDeDebito;
 import com.project.crud.model.CajaDeAhorro;
 import com.project.crud.model.TarjetaDeDebito;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TarjetaDeDebitoService implements ITarjetaDeDebito {
@@ -22,7 +24,11 @@ public class TarjetaDeDebitoService implements ITarjetaDeDebito {
 
     public TarjetaDebitoListDto getAllTarjetasDeDebito() {
         List<TarjetaDeDebito> tarjetas = tarjetaDeDebitoRepository.findAll();
-        return new TarjetaDebitoListDto(tarjetas);
+        List<TarjetaDeDebitoDto> tarjetaDeDebitoDtos = tarjetas.stream()
+                .map(tarjetasDto -> new TarjetaDeDebitoDto(tarjetasDto.getNumeroDeTarjeta(),tarjetasDto.getFechaDeVencimiento(),
+                        tarjetasDto.getCajaDeAhorro()))
+                .collect(Collectors.toList());
+        return new TarjetaDebitoListDto(tarjetaDeDebitoDtos);
     }
 
     public TarjetaDeDebito getTarjetaDeDebitoById(Long id) {

@@ -1,6 +1,7 @@
 package com.project.crud.model.impl;
 
-import com.project.crud.domain.dto.CajaAhorroListDto;
+import com.project.crud.domain.dto.dtoList.CajaAhorroListDto;
+import com.project.crud.domain.dto.CajaDeAhorroDto;
 import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.model.service.ICajaDeAhorro;
 import com.project.crud.model.CajaDeAhorro;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CajaDeAhorroService implements ICajaDeAhorro {
@@ -18,7 +20,10 @@ public class CajaDeAhorroService implements ICajaDeAhorro {
 
     public CajaAhorroListDto  getAllCajasDeAhorro() {
         List<CajaDeAhorro> cajasDeAhorro = cajaDeAhorroRepository.findAll();
-        return new CajaAhorroListDto(cajasDeAhorro);
+        List<CajaDeAhorroDto> cajaDeAhorroDtos = cajasDeAhorro.stream()
+                .map(caja -> new CajaDeAhorroDto(caja.getNumeroDeCuenta(), caja.getSaldo()))
+                .collect(Collectors.toList());
+        return new CajaAhorroListDto(cajaDeAhorroDtos);
     }
 
     public CajaDeAhorro getCajaDeAhorroById(Long id) {

@@ -1,10 +1,8 @@
 package com.project.crud.model.service;
 
-import com.project.crud.domain.dto.CajaAhorroListDto;
+import com.project.crud.domain.dto.dtoList.CajaAhorroListDto;
 import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.model.CajaDeAhorro;
-
-import java.util.List;
 
 public interface ICajaDeAhorro {
     CajaAhorroListDto getAllCajasDeAhorro();

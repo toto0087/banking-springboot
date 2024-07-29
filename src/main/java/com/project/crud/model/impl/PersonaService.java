@@ -1,6 +1,7 @@
 package com.project.crud.model.impl;
 
-import com.project.crud.domain.dto.PersonasListDto;
+import com.project.crud.domain.dto.PersonaDto;
+import com.project.crud.domain.dto.dtoList.PersonasListDto;
 import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.model.service.IPersona;
 import com.project.crud.model.Persona;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PersonaService implements IPersona {
@@ -18,7 +20,11 @@ public class PersonaService implements IPersona {
 
     public PersonasListDto getAllPersonas() {
         List<Persona> personas = personaRepository.findAll();
-        return new PersonasListDto(personas);
+        List<PersonaDto> personaDtos = personas.stream()
+                .map(persona -> new PersonaDto(persona.getNombre(), persona.getApellido(), persona.getDni(),
+                        persona.getTelefono(), persona.getEmail(), persona.getCuenta()))
+                .collect(Collectors.toList());
+        return new PersonasListDto(personaDtos);
     }
 
     public Persona getPersonaById(Long id) {

@@ -1,6 +1,7 @@
 package com.project.crud.model.impl;
 
-import com.project.crud.domain.dto.CuentaListDto;
+import com.project.crud.domain.dto.CuentaDto;
+import com.project.crud.domain.dto.dtoList.CuentaListDto;
 import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.model.service.ICuentaService;
 import com.project.crud.model.Cuenta;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CuentaService implements ICuentaService {
@@ -18,7 +20,10 @@ public class CuentaService implements ICuentaService {
 
     public CuentaListDto getAllCuentas() {
         List<Cuenta> cuentas = cuentaRepository.findAll();
-        return new CuentaListDto(cuentas);
+        List<CuentaDto> cuentaDtos = cuentas.stream()
+                .map(cuentasDto -> new CuentaDto(cuentasDto.getCliente(),cuentasDto.getCajaDeAhorro(), cuentasDto.getTarjetaDeDebito()))
+                .collect(Collectors.toList());
+        return new CuentaListDto(cuentaDtos);
     }
 
     public Cuenta getCuentaById(Long id) {

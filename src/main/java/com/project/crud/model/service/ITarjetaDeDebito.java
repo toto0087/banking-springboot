@@ -1,10 +1,8 @@
 package com.project.crud.model.service;
 
 import com.project.crud.domain.dto.ResponseDto;
-import com.project.crud.domain.dto.TarjetaDebitoListDto;
+import com.project.crud.domain.dto.dtoList.TarjetaDebitoListDto;
 import com.project.crud.model.TarjetaDeDebito;
-
-import java.util.List;
 
 public interface ITarjetaDeDebito {
     TarjetaDebitoListDto getAllTarjetasDeDebito();
