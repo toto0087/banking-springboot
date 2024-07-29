@@ -1,5 +1,6 @@
 package com.project.crud.model.impl;
 
+import com.project.crud.config.exceptions.NoExisteLaCuentaException;
 import com.project.crud.domain.dto.CuentaDto;
 import com.project.crud.domain.dto.dtoList.CuentaListDto;
 import com.project.crud.domain.dto.ResponseDto;
@@ -27,7 +28,9 @@ public class CuentaService implements ICuentaService {
     }
 
     public Cuenta getCuentaById(Long id) {
-        return cuentaRepository.findById(id).orElse(null);
+        return cuentaRepository.findById(id).orElseThrow(
+                () -> new NoExisteLaCuentaException("No existe la cuenta con id: " + id)
+        );
     }
 
     public Cuenta saveCuenta(Cuenta cuenta) {
