@@ -1,5 +1,7 @@
 package com.project.crud.model.impl;
 
+import com.project.crud.config.exceptions.NoExisteLaCajaDeAhorroException;
+import com.project.crud.config.exceptions.NoExisteLaTarjetaDeDebitoException;
 import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.domain.dto.TarjetaDeDebitoDto;
 import com.project.crud.domain.dto.dtoList.TarjetaDebitoListDto;
@@ -32,7 +34,9 @@ public class TarjetaDeDebitoService implements ITarjetaDeDebito {
     }
 
     public TarjetaDeDebito getTarjetaDeDebitoById(Long id) {
-        return tarjetaDeDebitoRepository.findById(id).orElse(null);
+        return tarjetaDeDebitoRepository.findById(id).orElseThrow(
+                () -> new NoExisteLaTarjetaDeDebitoException("No existe la tarjeta de débito con id: " + id)
+        );
     }
 
     public TarjetaDeDebito saveTarjetaDeDebito(TarjetaDeDebito tarjetaDeDebito) {
@@ -58,12 +62,12 @@ public class TarjetaDeDebitoService implements ITarjetaDeDebito {
             TarjetaDeDebito tarjetaDeDebito = tarjetaDeDebitoRepository.findById(id).orElse(null);
 
             if (tarjetaDeDebito == null) {
-                throw new RuntimeException("Tarjeta de débito no encontrada");
+                throw new NoExisteLaTarjetaDeDebitoException("Tarjeta de débito no encontrada con ID:" + id);
             }
 
             CajaDeAhorro cajaDeAhorro = tarjetaDeDebito.getCajaDeAhorro();
             if (cajaDeAhorro == null) {
-                throw new RuntimeException("Caja de ahorro no asociada");
+                throw new NoExisteLaCajaDeAhorroException("Caja de ahorro no asociada");
             }
 
             cajaDeAhorroService.restarSaldo(cajaDeAhorro.getId(), monto);

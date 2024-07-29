@@ -1,5 +1,7 @@
 package com.project.crud.model.impl;
 
+import com.project.crud.config.exceptions.NoExisteLaCajaDeAhorroException;
+import com.project.crud.config.exceptions.SaldoInsuficienteException;
 import com.project.crud.domain.dto.dtoList.CajaAhorroListDto;
 import com.project.crud.domain.dto.CajaDeAhorroDto;
 import com.project.crud.domain.dto.ResponseDto;
@@ -27,7 +29,9 @@ public class CajaDeAhorroService implements ICajaDeAhorro {
     }
 
     public CajaDeAhorro getCajaDeAhorroById(Long id) {
-        return cajaDeAhorroRepository.findById(id).orElse(null);
+        return cajaDeAhorroRepository.findById(id).orElseThrow(
+                () -> new NoExisteLaCajaDeAhorroException("No existe la caja de ahorro con id: " + id)
+        );
     }
 
     public CajaDeAhorro saveCajaDeAhorro(CajaDeAhorro cajaDeAhorro) {
@@ -51,12 +55,12 @@ public class CajaDeAhorroService implements ICajaDeAhorro {
 
         try {
             if (cajaDeAhorro == null) {
-                throw new RuntimeException("Caja de ahorro no encontrada");
+                throw new NoExisteLaCajaDeAhorroException("Caja de ahorro no encontrada" + id);
             }
 
             Double saldo = cajaDeAhorro.getSaldo();
             if (saldo < monto) {
-                throw new RuntimeException("Saldo insuficiente");
+                throw new SaldoInsuficienteException("Saldo insuficiente:" + saldo + "monto: " + monto);
             }
 
             cajaDeAhorro.setSaldo(saldo - monto);
@@ -72,12 +76,12 @@ public class CajaDeAhorroService implements ICajaDeAhorro {
 
         try {
             if (cajaDeAhorro == null) {
-                throw new RuntimeException("Caja de ahorro no encontrada");
+                throw new NoExisteLaCajaDeAhorroException("Caja de ahorro no encontrada con id: " + id);
             }
 
             Double saldo = cajaDeAhorro.getSaldo();
             if (saldo < monto) {
-                throw new RuntimeException("Saldo insuficiente");
+                throw new SaldoInsuficienteException("Saldo insuficiente:" + saldo + "monto: " + monto);
             }
 
             cajaDeAhorro.setSaldo(saldo - monto);
@@ -85,7 +89,7 @@ public class CajaDeAhorroService implements ICajaDeAhorro {
 
             CajaDeAhorro cajaDeAhorroDestino = cajaDeAhorroRepository.findByNumeroDeCuenta(numeroCuentaDestino);
             if (cajaDeAhorroDestino == null) {
-                throw new RuntimeException("Cuenta destino no encontrada");
+                throw new NoExisteLaCajaDeAhorroException("Cuenta destino no encontrada:" + numeroCuentaDestino);
             }
 
             cajaDeAhorroDestino.setSaldo(cajaDeAhorroDestino.getSaldo() + monto);
