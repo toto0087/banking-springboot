@@ -1,8 +1,8 @@
-package com.project.crud.services;
+package com.project.crud.model.impl;
 
-import com.project.crud.interfaces.IDireccion;
+import com.project.crud.model.service.IDireccion;
 import com.project.crud.model.Direccion;
-import com.project.crud.repository.IDireccionRepository;
+import com.project.crud.domain.repository.IDireccionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

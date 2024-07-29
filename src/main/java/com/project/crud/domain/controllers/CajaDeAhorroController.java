@@ -1,7 +1,7 @@
-package com.project.crud.controllers;
+package com.project.crud.domain.controllers;
 
 import com.project.crud.model.CajaDeAhorro;
-import com.project.crud.services.CajaDeAhorroService;
+import com.project.crud.model.impl.CajaDeAhorroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

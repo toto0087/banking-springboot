@@ -1,9 +1,9 @@
-package com.project.crud.services;
+package com.project.crud.model.impl;
 
-import com.project.crud.interfaces.ITarjetaDeDebito;
+import com.project.crud.model.service.ITarjetaDeDebito;
 import com.project.crud.model.CajaDeAhorro;
 import com.project.crud.model.TarjetaDeDebito;
-import com.project.crud.repository.ITarjetaDeDebitoRepository;
+import com.project.crud.domain.repository.ITarjetaDeDebitoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

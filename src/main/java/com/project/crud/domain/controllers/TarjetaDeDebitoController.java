@@ -1,7 +1,7 @@
-package com.project.crud.controllers;
+package com.project.crud.domain.controllers;
 
 import com.project.crud.model.TarjetaDeDebito;
-import com.project.crud.services.TarjetaDeDebitoService;
+import com.project.crud.model.impl.TarjetaDeDebitoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

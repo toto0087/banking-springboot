@@ -1,8 +1,8 @@
-package com.project.crud.services;
+package com.project.crud.model.impl;
 
-import com.project.crud.interfaces.IPersona;
+import com.project.crud.model.service.IPersona;
 import com.project.crud.model.Persona;
-import com.project.crud.repository.IPersonaRepository;
+import com.project.crud.domain.repository.IPersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

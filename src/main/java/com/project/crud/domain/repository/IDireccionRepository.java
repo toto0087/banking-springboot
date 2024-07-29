@@ -1,4 +1,4 @@
-package com.project.crud.repository;
+package com.project.crud.domain.repository;
 
 import com.project.crud.model.Direccion;
 import org.springframework.data.jpa.repository.JpaRepository;

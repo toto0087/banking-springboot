@@ -1,4 +1,4 @@
-package com.project.crud.interfaces;
+package com.project.crud.model.service;
 
 import com.project.crud.model.TarjetaDeDebito;
 
