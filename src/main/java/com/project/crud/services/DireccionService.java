@@ -1,5 +1,6 @@
 package com.project.crud.services;
 
+import com.project.crud.interfaces.IDireccion;
 import com.project.crud.model.Direccion;
 import com.project.crud.repository.IDireccionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class DireccionService {
+public class DireccionService implements IDireccion {
 
     @Autowired
     private IDireccionRepository direccionRepository;

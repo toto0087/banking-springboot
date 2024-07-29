@@ -1,5 +1,6 @@
 package com.project.crud.services;
 
+import com.project.crud.interfaces.ITarjetaDeDebito;
 import com.project.crud.model.CajaDeAhorro;
 import com.project.crud.model.TarjetaDeDebito;
 import com.project.crud.repository.ITarjetaDeDebitoRepository;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class TarjetaDeDebitoService {
+public class TarjetaDeDebitoService implements ITarjetaDeDebito {
 
     @Autowired
     private ITarjetaDeDebitoRepository tarjetaDeDebitoRepository;

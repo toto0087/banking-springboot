@@ -1,5 +1,6 @@
 package com.project.crud.services;
 
+import com.project.crud.interfaces.IPersona;
 import com.project.crud.model.Persona;
 import com.project.crud.repository.IPersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PersonaService {
+public class PersonaService implements IPersona {
 
     @Autowired
     private IPersonaRepository personaRepository;

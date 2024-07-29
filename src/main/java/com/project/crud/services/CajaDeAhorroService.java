@@ -1,5 +1,6 @@
 package com.project.crud.services;
 
+import com.project.crud.interfaces.ICajaDeAhorro;
 import com.project.crud.model.CajaDeAhorro;
 import com.project.crud.repository.ICajaDeAhorroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CajaDeAhorroService {
+public class CajaDeAhorroService implements ICajaDeAhorro {
 
     @Autowired
     private ICajaDeAhorroRepository cajaDeAhorroRepository;

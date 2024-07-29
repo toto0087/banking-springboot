@@ -1,5 +1,6 @@
 package com.project.crud.services;
 
+import com.project.crud.interfaces.ICuentaService;
 import com.project.crud.model.Cuenta;
 import com.project.crud.repository.ICuentaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CuentaService {
+public class CuentaService implements ICuentaService {
 
     @Autowired
     private ICuentaRepository cuentaRepository;
