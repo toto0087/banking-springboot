@@ -2,7 +2,7 @@ package com.project.crud.domain.controllers;
 
 import com.project.crud.domain.dto.dtoList.DireccionesListDto;
 import com.project.crud.domain.dto.ResponseDto;
-import com.project.crud.model.Direccion;
+import com.project.crud.model.repository.entity.Direccion;
 import com.project.crud.model.impl.DireccionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

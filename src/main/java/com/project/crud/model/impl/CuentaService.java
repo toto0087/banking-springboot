@@ -4,8 +4,8 @@ import com.project.crud.domain.dto.CuentaDto;
 import com.project.crud.domain.dto.dtoList.CuentaListDto;
 import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.model.service.ICuentaService;
-import com.project.crud.model.Cuenta;
-import com.project.crud.domain.repository.ICuentaRepository;
+import com.project.crud.model.repository.entity.Cuenta;
+import com.project.crud.model.repository.ICuentaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

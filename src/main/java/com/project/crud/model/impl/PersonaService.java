@@ -4,8 +4,8 @@ import com.project.crud.domain.dto.PersonaDto;
 import com.project.crud.domain.dto.dtoList.PersonasListDto;
 import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.model.service.IPersona;
-import com.project.crud.model.Persona;
-import com.project.crud.domain.repository.IPersonaRepository;
+import com.project.crud.model.repository.entity.Persona;
+import com.project.crud.model.repository.IPersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

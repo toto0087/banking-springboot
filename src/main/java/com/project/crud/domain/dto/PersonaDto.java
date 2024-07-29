@@ -1,6 +1,6 @@
 package com.project.crud.domain.dto;
 
-import com.project.crud.model.Cuenta;
+import com.project.crud.model.repository.entity.Cuenta;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

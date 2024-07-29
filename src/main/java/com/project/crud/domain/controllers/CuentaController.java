@@ -2,7 +2,7 @@ package com.project.crud.domain.controllers;
 
 import com.project.crud.domain.dto.dtoList.CuentaListDto;
 import com.project.crud.domain.dto.ResponseDto;
-import com.project.crud.model.Cuenta;
+import com.project.crud.model.repository.entity.Cuenta;
 import com.project.crud.model.impl.CuentaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

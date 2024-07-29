@@ -2,7 +2,7 @@ package com.project.crud.model.service;
 
 import com.project.crud.domain.dto.dtoList.DireccionesListDto;
 import com.project.crud.domain.dto.ResponseDto;
-import com.project.crud.model.Direccion;
+import com.project.crud.model.repository.entity.Direccion;
 
 public interface IDireccion {
     DireccionesListDto getAllDirecciones();

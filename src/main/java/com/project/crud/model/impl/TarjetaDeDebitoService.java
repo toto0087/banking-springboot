@@ -4,9 +4,9 @@ import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.domain.dto.TarjetaDeDebitoDto;
 import com.project.crud.domain.dto.dtoList.TarjetaDebitoListDto;
 import com.project.crud.model.service.ITarjetaDeDebito;
-import com.project.crud.model.CajaDeAhorro;
-import com.project.crud.model.TarjetaDeDebito;
-import com.project.crud.domain.repository.ITarjetaDeDebitoRepository;
+import com.project.crud.model.repository.entity.CajaDeAhorro;
+import com.project.crud.model.repository.entity.TarjetaDeDebito;
+import com.project.crud.model.repository.ITarjetaDeDebitoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
 package com.project.crud.domain.dto;
 
-import com.project.crud.model.CajaDeAhorro;
+import com.project.crud.model.repository.entity.CajaDeAhorro;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

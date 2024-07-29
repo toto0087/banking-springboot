@@ -1,4 +1,4 @@
-package com.project.crud.model;
+package com.project.crud.model.repository.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

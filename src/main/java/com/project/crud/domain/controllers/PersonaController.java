@@ -2,7 +2,7 @@ package com.project.crud.domain.controllers;
 
 import com.project.crud.domain.dto.dtoList.PersonasListDto;
 import com.project.crud.domain.dto.ResponseDto;
-import com.project.crud.model.Persona;
+import com.project.crud.model.repository.entity.Persona;
 import com.project.crud.model.impl.PersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

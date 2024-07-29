@@ -2,7 +2,7 @@ package com.project.crud.model.service;
 
 import com.project.crud.domain.dto.dtoList.PersonasListDto;
 import com.project.crud.domain.dto.ResponseDto;
-import com.project.crud.model.Persona;
+import com.project.crud.model.repository.entity.Persona;
 
 public interface IPersona {
     PersonasListDto getAllPersonas();

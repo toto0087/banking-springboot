@@ -4,8 +4,8 @@ import com.project.crud.domain.dto.DireccionDto;
 import com.project.crud.domain.dto.dtoList.DireccionesListDto;
 import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.model.service.IDireccion;
-import com.project.crud.model.Direccion;
-import com.project.crud.domain.repository.IDireccionRepository;
+import com.project.crud.model.repository.entity.Direccion;
+import com.project.crud.model.repository.IDireccionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

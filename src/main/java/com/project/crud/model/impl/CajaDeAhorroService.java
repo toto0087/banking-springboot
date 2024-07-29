@@ -4,8 +4,8 @@ import com.project.crud.domain.dto.dtoList.CajaAhorroListDto;
 import com.project.crud.domain.dto.CajaDeAhorroDto;
 import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.model.service.ICajaDeAhorro;
-import com.project.crud.model.CajaDeAhorro;
-import com.project.crud.domain.repository.ICajaDeAhorroRepository;
+import com.project.crud.model.repository.entity.CajaDeAhorro;
+import com.project.crud.model.repository.ICajaDeAhorroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

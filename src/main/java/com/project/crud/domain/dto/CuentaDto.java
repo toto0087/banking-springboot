@@ -1,8 +1,8 @@
 package com.project.crud.domain.dto;
 
-import com.project.crud.model.CajaDeAhorro;
-import com.project.crud.model.Persona;
-import com.project.crud.model.TarjetaDeDebito;
+import com.project.crud.model.repository.entity.CajaDeAhorro;
+import com.project.crud.model.repository.entity.Persona;
+import com.project.crud.model.repository.entity.TarjetaDeDebito;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

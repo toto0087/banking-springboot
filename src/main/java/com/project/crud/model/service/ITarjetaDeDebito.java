@@ -2,7 +2,7 @@ package com.project.crud.model.service;
 
 import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.domain.dto.dtoList.TarjetaDebitoListDto;
-import com.project.crud.model.TarjetaDeDebito;
+import com.project.crud.model.repository.entity.TarjetaDeDebito;
 
 public interface ITarjetaDeDebito {
     TarjetaDebitoListDto getAllTarjetasDeDebito();

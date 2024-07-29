@@ -2,7 +2,7 @@ package com.project.crud.model.service;
 
 import com.project.crud.domain.dto.dtoList.CuentaListDto;
 import com.project.crud.domain.dto.ResponseDto;
-import com.project.crud.model.Cuenta;
+import com.project.crud.model.repository.entity.Cuenta;
 
 public interface ICuentaService {
     CuentaListDto getAllCuentas();

@@ -1,4 +1,4 @@
-package com.project.crud.model;
+package com.project.crud.model.repository.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,15 +11,17 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "cuenta")
-public class Cuenta {
+@Table(name = "direccion")
+public class Direccion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
-    private Persona cliente;
-    @OneToOne
-    private CajaDeAhorro cajaDeAhorro;
-    @OneToOne
-    private TarjetaDeDebito tarjetaDeDebito;
+    @Column
+    private String calle;
+    @Column
+    private String numero;
+    @Column
+    private String localidad;
+    @Column
+    private String provincia;
 }

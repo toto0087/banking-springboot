@@ -1,7 +1,6 @@
 package com.project.crud.domain.dto.dtoList;
 
 import com.project.crud.domain.dto.PersonaDto;
-import com.project.crud.model.Persona;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
