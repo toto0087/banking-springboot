@@ -1,5 +1,7 @@
 package com.project.crud.domain.controllers;
 
+import com.project.crud.domain.dto.PersonasListDto;
+import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.model.Persona;
 import com.project.crud.model.impl.PersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +19,9 @@ public class PersonaController {
     private PersonaService personaService;
 
     @GetMapping
-    public ResponseEntity<List<Persona>> getAllPersonas() {
-        List<Persona> personas = personaService.getAllPersonas();
-        return ResponseEntity.ok(personas);
+    public ResponseEntity<PersonasListDto> getAllPersonas() {
+        PersonasListDto personasListDto =  personaService.getAllPersonas();
+        return ResponseEntity.ok(personasListDto);
     }
 
     @GetMapping("/{id}")
@@ -35,8 +37,8 @@ public class PersonaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePersona(@PathVariable Long id) {
-        personaService.deletePersona(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<ResponseDto> deletePersona(@PathVariable Long id) {
+        ResponseDto responseDto = personaService.deletePersona(id);
+        return ResponseEntity.ok(responseDto);
     }
 }

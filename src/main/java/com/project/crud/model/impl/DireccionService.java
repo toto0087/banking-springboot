@@ -1,5 +1,7 @@
 package com.project.crud.model.impl;
 
+import com.project.crud.domain.dto.DireccionesListDto;
+import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.model.service.IDireccion;
 import com.project.crud.model.Direccion;
 import com.project.crud.domain.repository.IDireccionRepository;
@@ -14,8 +16,9 @@ public class DireccionService implements IDireccion {
     @Autowired
     private IDireccionRepository direccionRepository;
 
-    public List<Direccion> getAllDirecciones() {
-        return direccionRepository.findAll();
+    public DireccionesListDto getAllDirecciones() {
+        List<Direccion> direcciones = direccionRepository.findAll();
+        return new DireccionesListDto(direcciones);
     }
 
     public Direccion getDireccionById(Long id) {
@@ -26,8 +29,14 @@ public class DireccionService implements IDireccion {
         return direccionRepository.save(direccion);
     }
 
-    public void deleteDireccion(Long id) {
-        direccionRepository.deleteById(id);
+    public ResponseDto deleteDireccion(Long id) {
+        ResponseDto responseDto = new ResponseDto();
+        try {
+            direccionRepository.deleteById(id);
+            responseDto.setSuccess(true);
+        } catch (Exception e) {
+            responseDto.setSuccess(false);
+        }
+        return responseDto;
     }
-
 }

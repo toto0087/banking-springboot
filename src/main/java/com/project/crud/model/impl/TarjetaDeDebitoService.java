@@ -1,5 +1,7 @@
 package com.project.crud.model.impl;
 
+import com.project.crud.domain.dto.ResponseDto;
+import com.project.crud.domain.dto.TarjetaDebitoListDto;
 import com.project.crud.model.service.ITarjetaDeDebito;
 import com.project.crud.model.CajaDeAhorro;
 import com.project.crud.model.TarjetaDeDebito;
@@ -18,8 +20,9 @@ public class TarjetaDeDebitoService implements ITarjetaDeDebito {
     @Autowired
     private CajaDeAhorroService cajaDeAhorroService;
 
-    public List<TarjetaDeDebito> getAllTarjetasDeDebito() {
-        return tarjetaDeDebitoRepository.findAll();
+    public TarjetaDebitoListDto getAllTarjetasDeDebito() {
+        List<TarjetaDeDebito> tarjetas = tarjetaDeDebitoRepository.findAll();
+        return new TarjetaDebitoListDto(tarjetas);
     }
 
     public TarjetaDeDebito getTarjetaDeDebitoById(Long id) {
@@ -30,15 +33,24 @@ public class TarjetaDeDebitoService implements ITarjetaDeDebito {
         return tarjetaDeDebitoRepository.save(tarjetaDeDebito);
     }
 
-    public void deleteTarjetaDeDebito(Long id) {
-        tarjetaDeDebitoRepository.deleteById(id);
+    public ResponseDto deleteTarjetaDeDebito(Long id) {
+        ResponseDto responseDto = new ResponseDto();
+        try {
+            tarjetaDeDebitoRepository.deleteById(id);
+            responseDto.setSuccess(true);
+        } catch (Exception e) {
+            responseDto.setSuccess(false);
+        }
+        return responseDto;
     }
 
 
-    public void processPayment(Long id, Double monto) throws RuntimeException {
-        TarjetaDeDebito tarjetaDeDebito = tarjetaDeDebitoRepository.findById(id).orElse(null);
+    public ResponseDto processPayment(Long id, Double monto) throws RuntimeException {
+        ResponseDto responseDto = new ResponseDto();
 
         try {
+            TarjetaDeDebito tarjetaDeDebito = tarjetaDeDebitoRepository.findById(id).orElse(null);
+
             if (tarjetaDeDebito == null) {
                 throw new RuntimeException("Tarjeta de débito no encontrada");
             }
@@ -49,8 +61,10 @@ public class TarjetaDeDebitoService implements ITarjetaDeDebito {
             }
 
             cajaDeAhorroService.restarSaldo(cajaDeAhorro.getId(), monto);
+            responseDto.setSuccess(true);
         } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
+            responseDto.setSuccess(false);
         }
+        return responseDto;
     }
 }

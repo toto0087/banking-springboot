@@ -1,14 +1,16 @@
 package com.project.crud.model.service;
 
+import com.project.crud.domain.dto.CajaAhorroListDto;
+import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.model.CajaDeAhorro;
 
 import java.util.List;
 
 public interface ICajaDeAhorro {
-    List<CajaDeAhorro> getAllCajasDeAhorro();
+    CajaAhorroListDto getAllCajasDeAhorro();
     CajaDeAhorro getCajaDeAhorroById(Long id);
     CajaDeAhorro saveCajaDeAhorro(CajaDeAhorro cajaDeAhorro);
-    void deleteCajaDeAhorro(Long id);
+    ResponseDto deleteCajaDeAhorro(Long id);
     void restarSaldo(Long id, Double monto);
-    void depositar(Long id, Long numeroCuentaDestino, Double monto);
+    ResponseDto depositar(Long id, Long numeroCuentaDestino, Double monto);
 }

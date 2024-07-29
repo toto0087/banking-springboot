@@ -1,5 +1,7 @@
 package com.project.crud.model.impl;
 
+import com.project.crud.domain.dto.CuentaListDto;
+import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.model.service.ICuentaService;
 import com.project.crud.model.Cuenta;
 import com.project.crud.domain.repository.ICuentaRepository;
@@ -14,8 +16,9 @@ public class CuentaService implements ICuentaService {
     @Autowired
     private ICuentaRepository cuentaRepository;
 
-    public List<Cuenta> getAllCuentas() {
-        return cuentaRepository.findAll();
+    public CuentaListDto getAllCuentas() {
+        List<Cuenta> cuentas = cuentaRepository.findAll();
+        return new CuentaListDto(cuentas);
     }
 
     public Cuenta getCuentaById(Long id) {
@@ -26,7 +29,14 @@ public class CuentaService implements ICuentaService {
         return cuentaRepository.save(cuenta);
     }
 
-    public void deleteCuenta(Long id) {
-        cuentaRepository.deleteById(id);
+    public ResponseDto deleteCuenta(Long id) {
+        ResponseDto responseDto = new ResponseDto();
+        try {
+            cuentaRepository.deleteById(id);
+            responseDto.setSuccess(true);
+        } catch (Exception e) {
+            responseDto.setSuccess(false);
+        }
+        return responseDto;
     }
 }

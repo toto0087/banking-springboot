@@ -1,13 +1,15 @@
 package com.project.crud.model.service;
 
+import com.project.crud.domain.dto.ResponseDto;
+import com.project.crud.domain.dto.TarjetaDebitoListDto;
 import com.project.crud.model.TarjetaDeDebito;
 
 import java.util.List;
 
 public interface ITarjetaDeDebito {
-    List<TarjetaDeDebito> getAllTarjetasDeDebito();
+    TarjetaDebitoListDto getAllTarjetasDeDebito();
     TarjetaDeDebito getTarjetaDeDebitoById(Long id);
     TarjetaDeDebito saveTarjetaDeDebito(TarjetaDeDebito tarjetaDeDebito);
-    void deleteTarjetaDeDebito(Long id);
-    void processPayment(Long id, Double monto) throws RuntimeException;
+    ResponseDto deleteTarjetaDeDebito(Long id);
+    ResponseDto processPayment(Long id, Double monto) throws RuntimeException;
 }

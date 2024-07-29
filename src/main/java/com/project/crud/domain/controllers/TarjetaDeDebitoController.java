@@ -1,5 +1,7 @@
 package com.project.crud.domain.controllers;
 
+import com.project.crud.domain.dto.ResponseDto;
+import com.project.crud.domain.dto.TarjetaDebitoListDto;
 import com.project.crud.model.TarjetaDeDebito;
 import com.project.crud.model.impl.TarjetaDeDebitoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +19,9 @@ public class TarjetaDeDebitoController {
     private TarjetaDeDebitoService tarjetaDeDebitoService;
 
     @GetMapping
-    public ResponseEntity<List<TarjetaDeDebito>> getAllTarjetasDeDebito() {
-        List<TarjetaDeDebito> tarjetas = tarjetaDeDebitoService.getAllTarjetasDeDebito();
-        return ResponseEntity.ok(tarjetas);
+    public ResponseEntity<TarjetaDebitoListDto> getAllTarjetasDeDebito() {
+        TarjetaDebitoListDto tarjetaDebitoListDto = tarjetaDeDebitoService.getAllTarjetasDeDebito();
+        return ResponseEntity.ok(tarjetaDebitoListDto);
     }
 
     @GetMapping("/{id}")
@@ -35,15 +37,15 @@ public class TarjetaDeDebitoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTarjetaDeDebito(@PathVariable Long id) {
-        tarjetaDeDebitoService.deleteTarjetaDeDebito(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<ResponseDto> deleteTarjetaDeDebito(@PathVariable Long id) {
+        ResponseDto responseDto = tarjetaDeDebitoService.deleteTarjetaDeDebito(id);
+        return ResponseEntity.ok(responseDto);
     }
 
     @PostMapping("/{id}/pagar")
-    public ResponseEntity<Void> pagar(@PathVariable Long id, @RequestParam Double monto) {
-        tarjetaDeDebitoService.processPayment(id, monto);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<ResponseDto> pagar(@PathVariable Long id, @RequestParam Double monto) {
+        ResponseDto responseDto = tarjetaDeDebitoService.processPayment(id, monto);
+        return ResponseEntity.ok(responseDto);
     }
 
 }

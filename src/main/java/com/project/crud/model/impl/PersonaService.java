@@ -1,5 +1,7 @@
 package com.project.crud.model.impl;
 
+import com.project.crud.domain.dto.PersonasListDto;
+import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.model.service.IPersona;
 import com.project.crud.model.Persona;
 import com.project.crud.domain.repository.IPersonaRepository;
@@ -14,8 +16,9 @@ public class PersonaService implements IPersona {
     @Autowired
     private IPersonaRepository personaRepository;
 
-    public List<Persona> getAllPersonas() {
-        return personaRepository.findAll();
+    public PersonasListDto getAllPersonas() {
+        List<Persona> personas = personaRepository.findAll();
+        return new PersonasListDto(personas);
     }
 
     public Persona getPersonaById(Long id) {
@@ -26,7 +29,14 @@ public class PersonaService implements IPersona {
         return personaRepository.save(persona);
     }
 
-    public void deletePersona(Long id) {
-        personaRepository.deleteById(id);
+    public ResponseDto deletePersona(Long id) {
+        ResponseDto responseDto = new ResponseDto();
+        try {
+            personaRepository.deleteById(id);
+            responseDto.setSuccess(true);
+        } catch (Exception e) {
+            responseDto.setSuccess(false);
+        }
+        return responseDto;
     }
 }

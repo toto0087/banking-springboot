@@ -1,5 +1,7 @@
 package com.project.crud.domain.controllers;
 
+import com.project.crud.domain.dto.DireccionesListDto;
+import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.model.Direccion;
 import com.project.crud.model.impl.DireccionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +19,9 @@ public class DireccionController {
     private DireccionService direccionService;
 
     @GetMapping
-    public ResponseEntity<List<Direccion>> getAllDirecciones() {
-        List<Direccion> direcciones = direccionService.getAllDirecciones();
-        return ResponseEntity.ok(direcciones);
+    public ResponseEntity<DireccionesListDto> getAllDirecciones() {
+        DireccionesListDto direccionesListDto = direccionService.getAllDirecciones();
+        return ResponseEntity.ok(direccionesListDto);
     }
 
     @GetMapping("/{id}")
@@ -35,8 +37,8 @@ public class DireccionController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteDireccion(@PathVariable Long id) {
-        direccionService.deleteDireccion(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<ResponseDto> deleteDireccion(@PathVariable Long id) {
+        ResponseDto responseDto = direccionService.deleteDireccion(id);
+        return ResponseEntity.ok(responseDto);
     }
 }

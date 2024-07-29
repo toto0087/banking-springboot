@@ -1,5 +1,7 @@
 package com.project.crud.domain.controllers;
 
+import com.project.crud.domain.dto.CuentaListDto;
+import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.model.Cuenta;
 import com.project.crud.model.impl.CuentaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +19,9 @@ public class CuentaController {
     private CuentaService cuentaService;
 
     @GetMapping
-    public ResponseEntity<List<Cuenta>> getAllCuentas() {
-        List<Cuenta> cuentas = cuentaService.getAllCuentas();
-        return ResponseEntity.ok(cuentas);
+    public ResponseEntity<CuentaListDto> getAllCuentas() {
+        CuentaListDto cuentaListDto = cuentaService.getAllCuentas();
+        return ResponseEntity.ok(cuentaListDto);
     }
 
     @GetMapping("/{id}")
@@ -35,9 +37,9 @@ public class CuentaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCuenta(@PathVariable Long id) {
-        cuentaService.deleteCuenta(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<ResponseDto> deleteCuenta(@PathVariable Long id) {
+        ResponseDto responseDto = cuentaService.deleteCuenta(id);
+        return ResponseEntity.ok(responseDto);
     }
 
 }

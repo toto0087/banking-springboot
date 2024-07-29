@@ -1,12 +1,15 @@
 package com.project.crud.model.service;
 
+import com.project.crud.domain.dto.CajaAhorroListDto;
+import com.project.crud.domain.dto.CuentaListDto;
+import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.model.Cuenta;
 
 import java.util.List;
 
 public interface ICuentaService {
-    List<Cuenta> getAllCuentas();
+    CuentaListDto getAllCuentas();
     Cuenta getCuentaById(Long id);
     Cuenta saveCuenta(Cuenta cuenta);
-    void deleteCuenta(Long id);
+    ResponseDto deleteCuenta(Long id);
 }

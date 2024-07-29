@@ -1,12 +1,14 @@
 package com.project.crud.model.service;
 
+import com.project.crud.domain.dto.DireccionesListDto;
+import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.model.Direccion;
 
 import java.util.List;
 
 public interface IDireccion {
-    List<Direccion> getAllDirecciones();
+    DireccionesListDto getAllDirecciones();
     Direccion getDireccionById(Long id);
     Direccion saveDireccion(Direccion direccion);
-    void deleteDireccion(Long id);
+    ResponseDto deleteDireccion(Long id);
 }

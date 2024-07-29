@@ -1,5 +1,7 @@
 package com.project.crud.domain.controllers;
 
+import com.project.crud.domain.dto.CajaAhorroListDto;
+import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.model.CajaDeAhorro;
 import com.project.crud.model.impl.CajaDeAhorroService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +19,9 @@ public class CajaDeAhorroController {
     private CajaDeAhorroService cajaDeAhorroService;
 
     @GetMapping
-    public ResponseEntity<List<CajaDeAhorro>> getAllCajasDeAhorro() {
-        List<CajaDeAhorro> cajasDeAhorro = cajaDeAhorroService.getAllCajasDeAhorro();
-        return ResponseEntity.ok(cajasDeAhorro);
+    public ResponseEntity<CajaAhorroListDto> getAllCajasDeAhorro() {
+        CajaAhorroListDto cajaAhorroListDto = cajaDeAhorroService.getAllCajasDeAhorro();
+        return ResponseEntity.ok(cajaAhorroListDto);
     }
 
     @GetMapping("/{id}")
@@ -35,14 +37,14 @@ public class CajaDeAhorroController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCajaDeAhorro(@PathVariable Long id) {
-        cajaDeAhorroService.deleteCajaDeAhorro(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<ResponseDto> deleteCajaDeAhorro(@PathVariable Long id) {
+        ResponseDto responseDto = cajaDeAhorroService.deleteCajaDeAhorro(id);
+        return ResponseEntity.ok(responseDto);
     }
 
     @PostMapping("/{id}/depositar/{numeroCuentaDestino}")
-    public ResponseEntity<Void> depositar(@PathVariable Long id, @PathVariable Long numeroCuentaDestino, @RequestParam Double monto) {
-        cajaDeAhorroService.depositar(id, numeroCuentaDestino, monto);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<ResponseDto> depositar(@PathVariable Long id, @PathVariable Long numeroCuentaDestino, @RequestParam Double monto) {
+        ResponseDto responseDto = cajaDeAhorroService.depositar(id, numeroCuentaDestino, monto);
+        return ResponseEntity.ok(responseDto);
     }
 }

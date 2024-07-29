@@ -1,5 +1,7 @@
 package com.project.crud.model.impl;
 
+import com.project.crud.domain.dto.CajaAhorroListDto;
+import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.model.service.ICajaDeAhorro;
 import com.project.crud.model.CajaDeAhorro;
 import com.project.crud.domain.repository.ICajaDeAhorroRepository;
@@ -14,8 +16,9 @@ public class CajaDeAhorroService implements ICajaDeAhorro {
     @Autowired
     private ICajaDeAhorroRepository cajaDeAhorroRepository;
 
-    public List<CajaDeAhorro> getAllCajasDeAhorro() {
-        return cajaDeAhorroRepository.findAll();
+    public CajaAhorroListDto  getAllCajasDeAhorro() {
+        List<CajaDeAhorro> cajasDeAhorro = cajaDeAhorroRepository.findAll();
+        return new CajaAhorroListDto(cajasDeAhorro);
     }
 
     public CajaDeAhorro getCajaDeAhorroById(Long id) {
@@ -26,8 +29,15 @@ public class CajaDeAhorroService implements ICajaDeAhorro {
         return cajaDeAhorroRepository.save(cajaDeAhorro);
     }
 
-    public void deleteCajaDeAhorro(Long id) {
-        cajaDeAhorroRepository.deleteById(id);
+    public ResponseDto deleteCajaDeAhorro(Long id) {
+        ResponseDto responseDto = new ResponseDto();
+        try {
+            cajaDeAhorroRepository.deleteById(id);
+            responseDto.setSuccess(true);
+        } catch (Exception e) {
+            responseDto.setSuccess(false);
+        }
+        return responseDto;
     }
 
 
@@ -51,8 +61,9 @@ public class CajaDeAhorroService implements ICajaDeAhorro {
         }
     }
 
-    public void depositar(Long id, Long numeroCuentaDestino, Double monto) {
+    public ResponseDto depositar(Long id, Long numeroCuentaDestino, Double monto) {
         CajaDeAhorro cajaDeAhorro = cajaDeAhorroRepository.findById(id).orElse(null);
+        ResponseDto responseDto = new ResponseDto();
 
         try {
             if (cajaDeAhorro == null) {
@@ -74,8 +85,10 @@ public class CajaDeAhorroService implements ICajaDeAhorro {
 
             cajaDeAhorroDestino.setSaldo(cajaDeAhorroDestino.getSaldo() + monto);
             cajaDeAhorroRepository.save(cajaDeAhorroDestino);
+            responseDto.setSuccess(true);
         } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
+            responseDto.setSuccess(false);
         }
+        return responseDto;
     }
 }

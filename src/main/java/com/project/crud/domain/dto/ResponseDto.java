@@ -9,6 +9,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResonseDto {
+public class ResponseDto {
     private boolean success;
 }
