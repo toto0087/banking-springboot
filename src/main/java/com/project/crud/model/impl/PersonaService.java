@@ -1,8 +1,8 @@
 package com.project.crud.model.impl;
 
-import com.project.crud.config.exceptions.NoExisteLaPersonaException;
+import com.project.crud.model.exceptions.NoExisteLaPersonaException;
 import com.project.crud.domain.dto.PersonaDto;
-import com.project.crud.domain.dto.dtoList.PersonasListDto;
+import com.project.crud.domain.dto.dtolist.PersonasListDto;
 import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.model.service.IPersona;
 import com.project.crud.model.repository.entity.Persona;
@@ -28,8 +28,11 @@ public class PersonaService implements IPersona {
         return new PersonasListDto(personaDtos);
     }
 
-    public Persona getPersonaById(Long id) {
-        return personaRepository.findById(id).orElseThrow(
+    public PersonaDto getPersonaById(Long id) {
+        return personaRepository.findById(id).map(
+                persona -> new PersonaDto(persona.getNombre(), persona.getApellido(), persona.getDni(),
+                        persona.getTelefono(), persona.getEmail(), persona.getCuenta()))
+                .orElseThrow(
                 () -> new NoExisteLaPersonaException("No existe la persona con id: " + id)
         );
     }

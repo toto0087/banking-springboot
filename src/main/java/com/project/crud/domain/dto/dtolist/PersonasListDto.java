@@ -1,6 +1,6 @@
-package com.project.crud.domain.dto.dtoList;
+package com.project.crud.domain.dto.dtolist;
 
-import com.project.crud.domain.dto.CuentaDto;
+import com.project.crud.domain.dto.PersonaDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +12,6 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CuentaListDto {
-    private List<CuentaDto> cuentaList;
+public class PersonasListDto {
+    private List<PersonaDto> personaList;
 }

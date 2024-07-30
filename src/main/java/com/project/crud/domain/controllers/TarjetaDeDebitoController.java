@@ -1,7 +1,8 @@
 package com.project.crud.domain.controllers;
 
 import com.project.crud.domain.dto.ResponseDto;
-import com.project.crud.domain.dto.dtoList.TarjetaDebitoListDto;
+import com.project.crud.domain.dto.TarjetaDeDebitoDto;
+import com.project.crud.domain.dto.dtolist.TarjetaDebitoListDto;
 import com.project.crud.model.repository.entity.TarjetaDeDebito;
 import com.project.crud.model.impl.TarjetaDeDebitoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,9 @@ public class TarjetaDeDebitoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TarjetaDeDebito> getTarjetaDeDebitoById(@PathVariable Long id) {
-        TarjetaDeDebito tarjeta = tarjetaDeDebitoService.getTarjetaDeDebitoById(id);
-        return ResponseEntity.of(java.util.Optional.ofNullable(tarjeta));
+    public ResponseEntity<TarjetaDeDebitoDto> getTarjetaDeDebitoById(@PathVariable Long id) {
+        TarjetaDeDebitoDto tarjetaDeDebitoDto = tarjetaDeDebitoService.getTarjetaDeDebitoById(id);
+        return ResponseEntity.of(java.util.Optional.ofNullable(tarjetaDeDebitoDto));
     }
 
     @PostMapping

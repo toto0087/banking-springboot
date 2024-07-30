@@ -1,4 +1,4 @@
-package com.project.crud.config.exceptions;
+package com.project.crud.model.exceptions;
 
 public class NoExisteLaCuentaException extends RuntimeException {
     private String message;

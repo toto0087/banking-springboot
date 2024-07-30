@@ -1,8 +1,8 @@
-package com.project.crud.config.exceptions.globalExHandler;
+package com.project.crud.config.exceptions.globalexhandler;
 
-import com.project.crud.config.exceptions.*;
+import com.project.crud.model.exceptions.*;
 import org.springframework.http.HttpStatus;
-import com.project.crud.config.exceptions.errorTemplate.ErrorResponse;
+import com.project.crud.config.exceptions.errortemplate.ErrorResponse;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

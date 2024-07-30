@@ -1,4 +1,4 @@
-package com.project.crud.config.exceptions.errorTemplate;
+package com.project.crud.config.exceptions.errortemplate;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

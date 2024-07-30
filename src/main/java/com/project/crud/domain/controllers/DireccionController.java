@@ -1,6 +1,7 @@
 package com.project.crud.domain.controllers;
 
-import com.project.crud.domain.dto.dtoList.DireccionesListDto;
+import com.project.crud.domain.dto.DireccionDto;
+import com.project.crud.domain.dto.dtolist.DireccionesListDto;
 import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.model.repository.entity.Direccion;
 import com.project.crud.model.impl.DireccionService;
@@ -23,9 +24,9 @@ public class DireccionController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Direccion> getDireccionById(@PathVariable Long id) {
-        Direccion direccion = direccionService.getDireccionById(id);
-        return ResponseEntity.of(java.util.Optional.ofNullable(direccion));
+    public ResponseEntity<DireccionDto> getDireccionById(@PathVariable Long id) {
+        DireccionDto direccionDto = direccionService.getDireccionById(id);
+        return ResponseEntity.of(java.util.Optional.ofNullable(direccionDto));
     }
 
     @PostMapping

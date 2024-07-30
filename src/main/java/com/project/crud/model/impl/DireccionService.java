@@ -1,8 +1,8 @@
 package com.project.crud.model.impl;
 
-import com.project.crud.config.exceptions.NoExisteLaDireccionException;
+import com.project.crud.model.exceptions.NoExisteLaDireccionException;
 import com.project.crud.domain.dto.DireccionDto;
-import com.project.crud.domain.dto.dtoList.DireccionesListDto;
+import com.project.crud.domain.dto.dtolist.DireccionesListDto;
 import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.model.service.IDireccion;
 import com.project.crud.model.repository.entity.Direccion;
@@ -27,8 +27,10 @@ public class DireccionService implements IDireccion {
         return new DireccionesListDto(direccionDtos);
     }
 
-    public Direccion getDireccionById(Long id) {
-        return direccionRepository.findById(id).orElseThrow(
+    public DireccionDto getDireccionById(Long id) {
+        return direccionRepository.findById(id).map(
+                direccion -> new DireccionDto(direccion.getCalle(),direccion.getLocalidad(),direccion.getProvincia()))
+                .orElseThrow(
                 () -> new NoExisteLaDireccionException("No existe la direccion con id: " + id)
         );
     }

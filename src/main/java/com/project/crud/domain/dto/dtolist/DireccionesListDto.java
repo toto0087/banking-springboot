@@ -1,4 +1,4 @@
-package com.project.crud.domain.dto.dtoList;
+package com.project.crud.domain.dto.dtolist;
 
 import com.project.crud.domain.dto.DireccionDto;
 import lombok.AllArgsConstructor;

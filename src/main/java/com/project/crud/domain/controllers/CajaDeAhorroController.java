@@ -1,6 +1,7 @@
 package com.project.crud.domain.controllers;
 
-import com.project.crud.domain.dto.dtoList.CajaAhorroListDto;
+import com.project.crud.domain.dto.CajaDeAhorroDto;
+import com.project.crud.domain.dto.dtolist.CajaAhorroListDto;
 import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.model.repository.entity.CajaDeAhorro;
 import com.project.crud.model.impl.CajaDeAhorroService;
@@ -23,9 +24,9 @@ public class CajaDeAhorroController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CajaDeAhorro> getCajaDeAhorroById(@PathVariable Long id) {
-        CajaDeAhorro cajaDeAhorro = cajaDeAhorroService.getCajaDeAhorroById(id);
-        return ResponseEntity.of(java.util.Optional.ofNullable(cajaDeAhorro));
+    public ResponseEntity<CajaDeAhorroDto> getCajaDeAhorroById(@PathVariable Long id) {
+        CajaDeAhorroDto cajaDeAhorroDto = cajaDeAhorroService.getCajaDeAhorroById(id);
+        return ResponseEntity.of(java.util.Optional.ofNullable(cajaDeAhorroDto));
     }
 
     @PostMapping

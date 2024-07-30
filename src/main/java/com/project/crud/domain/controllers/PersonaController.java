@@ -1,6 +1,7 @@
 package com.project.crud.domain.controllers;
 
-import com.project.crud.domain.dto.dtoList.PersonasListDto;
+import com.project.crud.domain.dto.PersonaDto;
+import com.project.crud.domain.dto.dtolist.PersonasListDto;
 import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.model.repository.entity.Persona;
 import com.project.crud.model.impl.PersonaService;
@@ -23,9 +24,9 @@ public class PersonaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Persona> getPersonaById(@PathVariable Long id) {
-        Persona persona = personaService.getPersonaById(id);
-        return ResponseEntity.of(java.util.Optional.ofNullable(persona));
+    public ResponseEntity<PersonaDto> getPersonaById(@PathVariable Long id) {
+        PersonaDto personaDto = personaService.getPersonaById(id);
+        return ResponseEntity.of(java.util.Optional.ofNullable(personaDto));
     }
 
     @PostMapping

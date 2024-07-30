@@ -1,4 +1,4 @@
-package com.project.crud.config.exceptions;
+package com.project.crud.model.exceptions;
 
 public class SaldoInsuficienteException extends RuntimeException{
     private String message;

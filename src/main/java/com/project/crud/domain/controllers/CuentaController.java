@@ -1,8 +1,8 @@
 package com.project.crud.domain.controllers;
 
-import com.project.crud.domain.dto.dtoList.CuentaListDto;
+import com.project.crud.domain.dto.CuentaDto;
+import com.project.crud.domain.dto.dtolist.CuentaListDto;
 import com.project.crud.domain.dto.ResponseDto;
-import com.project.crud.model.repository.entity.Cuenta;
 import com.project.crud.model.impl.CuentaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,14 +23,14 @@ public class CuentaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cuenta> getCuentaById(@PathVariable Long id) {
-        Cuenta cuenta = cuentaService.getCuentaById(id);
-        return ResponseEntity.of(java.util.Optional.ofNullable(cuenta));
+    public ResponseEntity<CuentaDto> getCuentaById(@PathVariable Long id) {
+        CuentaDto cuentaDto = cuentaService.getCuentaById(id);
+        return ResponseEntity.of(java.util.Optional.ofNullable(cuentaDto));
     }
 
     @PostMapping
-    public ResponseEntity<Cuenta> saveCuenta(@RequestBody Cuenta cuenta) {
-        Cuenta savedCuenta = cuentaService.saveCuenta(cuenta);
+    public ResponseEntity<com.project.crud.model.repository.entity.Cuenta> saveCuenta(@RequestBody com.project.crud.model.repository.entity.Cuenta cuenta) {
+        com.project.crud.model.repository.entity.Cuenta savedCuenta = cuentaService.saveCuenta(cuenta);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedCuenta);
     }
 

@@ -1,10 +1,10 @@
 package com.project.crud.model.impl;
 
-import com.project.crud.config.exceptions.NoExisteLaCajaDeAhorroException;
-import com.project.crud.config.exceptions.NoExisteLaTarjetaDeDebitoException;
+import com.project.crud.model.exceptions.NoExisteLaCajaDeAhorroException;
+import com.project.crud.model.exceptions.NoExisteLaTarjetaDeDebitoException;
 import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.domain.dto.TarjetaDeDebitoDto;
-import com.project.crud.domain.dto.dtoList.TarjetaDebitoListDto;
+import com.project.crud.domain.dto.dtolist.TarjetaDebitoListDto;
 import com.project.crud.model.service.ITarjetaDeDebito;
 import com.project.crud.model.repository.entity.CajaDeAhorro;
 import com.project.crud.model.repository.entity.TarjetaDeDebito;
@@ -33,8 +33,11 @@ public class TarjetaDeDebitoService implements ITarjetaDeDebito {
         return new TarjetaDebitoListDto(tarjetaDeDebitoDtos);
     }
 
-    public TarjetaDeDebito getTarjetaDeDebitoById(Long id) {
-        return tarjetaDeDebitoRepository.findById(id).orElseThrow(
+    public TarjetaDeDebitoDto getTarjetaDeDebitoById(Long id) {
+        return tarjetaDeDebitoRepository.findById(id)
+                .map(tarjetaDeDebito -> new TarjetaDeDebitoDto(tarjetaDeDebito.getNumeroDeTarjeta(),
+                                tarjetaDeDebito.getFechaDeVencimiento(), tarjetaDeDebito.getCajaDeAhorro()))
+                .orElseThrow(
                 () -> new NoExisteLaTarjetaDeDebitoException("No existe la tarjeta de débito con id: " + id)
         );
     }

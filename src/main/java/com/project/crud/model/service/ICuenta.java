@@ -1,12 +1,13 @@
 package com.project.crud.model.service;
 
-import com.project.crud.domain.dto.dtoList.CuentaListDto;
+import com.project.crud.domain.dto.CuentaDto;
+import com.project.crud.domain.dto.dtolist.CuentaListDto;
 import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.model.repository.entity.Cuenta;
 
-public interface ICuentaService {
+public interface ICuenta {
     CuentaListDto getAllCuentas();
-    Cuenta getCuentaById(Long id);
+    CuentaDto getCuentaById(Long id);
     Cuenta saveCuenta(Cuenta cuenta);
     ResponseDto deleteCuenta(Long id);
 }

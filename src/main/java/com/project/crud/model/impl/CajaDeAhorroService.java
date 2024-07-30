@@ -1,8 +1,8 @@
 package com.project.crud.model.impl;
 
-import com.project.crud.config.exceptions.NoExisteLaCajaDeAhorroException;
-import com.project.crud.config.exceptions.SaldoInsuficienteException;
-import com.project.crud.domain.dto.dtoList.CajaAhorroListDto;
+import com.project.crud.model.exceptions.NoExisteLaCajaDeAhorroException;
+import com.project.crud.model.exceptions.SaldoInsuficienteException;
+import com.project.crud.domain.dto.dtolist.CajaAhorroListDto;
 import com.project.crud.domain.dto.CajaDeAhorroDto;
 import com.project.crud.domain.dto.ResponseDto;
 import com.project.crud.model.service.ICajaDeAhorro;
@@ -28,10 +28,10 @@ public class CajaDeAhorroService implements ICajaDeAhorro {
         return new CajaAhorroListDto(cajaDeAhorroDtos);
     }
 
-    public CajaDeAhorro getCajaDeAhorroById(Long id) {
-        return cajaDeAhorroRepository.findById(id).orElseThrow(
-                () -> new NoExisteLaCajaDeAhorroException("No existe la caja de ahorro con id: " + id)
-        );
+    public CajaDeAhorroDto getCajaDeAhorroById(Long id) {
+        return cajaDeAhorroRepository.findById(id)
+                .map(caja -> new CajaDeAhorroDto(caja.getNumeroDeCuenta(), caja.getSaldo()))
+                .orElseThrow(() -> new NoExisteLaCajaDeAhorroException("No existe la caja de ahorro con id: " + id));
     }
 
     public CajaDeAhorro saveCajaDeAhorro(CajaDeAhorro cajaDeAhorro) {
